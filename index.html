@@ -15,7 +15,7 @@
     <script src="script.js"></script>
 </head>
 
-<body>
+<body onload="init()">
     <nav class="navbar bg-body-tertiary">
         <div class="container-fluid">
             <span class="navbar-brand mb-0 h1">QuizApp</span>
@@ -50,7 +50,7 @@
                 </div>
 
                 <div class="question-footer">
-                    <span><b>1</b> von <b>5</b> Fragen</span>
+                    <span><b>1</b> von <b id="all-questions">5</b> Fragen</span>
                     <button class="btn btn-dark">Nächste Frage</button>
                 </div>
 
