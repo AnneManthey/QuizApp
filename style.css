@@ -37,3 +37,8 @@ body{
 .text-center{
     text-align: center;
 }
+
+.final-headline{
+    font-size: 24px;
+    padding-bottom: 32px;
+}

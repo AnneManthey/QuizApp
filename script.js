@@ -63,6 +63,8 @@ function showQuestion() {
         document.getElementById("all-questions-endscreen").innerHTML = questions.length;
         document.getElementById("right-questions-endscreen").innerHTML = rightQuestions;
 
+        document.getElementById("header-image").src = `./assets/img/victory.png`;
+
     }
     else {
         document.getElementById('question-number').innerHTML = currentQuestion + 1;
@@ -77,7 +79,6 @@ function showQuestion() {
 function answer(selection) {
     let question = questions[currentQuestion];
     let selectedQuestionNumber = selection.slice(-1); // greift auf den letzten char des strings zu
-
     let idOfRightAnswer = `answer_${question['right_answer']}`;
 
     if (selectedQuestionNumber == question['right_answer']) {
