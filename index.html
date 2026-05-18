@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -12,7 +12,7 @@
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </head>
 
 <body onload="init()">
@@ -28,30 +28,30 @@
             <div class="card-body">
                 <h5 class="card-title" id="questiontext">Frage</h5>
 
-                <div class="card mb-2">
+                <div class="card quiz-answer mb-2" onclick="answer('answer_1')">
                     <div class="card-body" id="answer_1">
                         Antwort
                     </div>
                 </div>
-                <div class="card mb-2">
+                <div class="card quiz-answer mb-2"onclick="answer('answer_2')">
                     <div class="card-body" id="answer_2">
                         Antwort
                     </div>
                 </div>
-                <div class="card mb-2">
+                <div class="card quiz-answer mb-2"onclick="answer('answer_3')">
                     <div class="card-body" id="answer_3">
                         Antwort
                     </div>
                 </div>
-                <div class="card mb-2">
+                <div class="card quiz-answer mb-2"onclick="answer('answer_4')">
                     <div class="card-body" id="answer_4">
                         Antwort
                     </div>
                 </div>
 
                 <div class="question-footer">
-                    <span><b>1</b> von <b id="all-questions">5</b> Fragen</span>
-                    <button class="btn btn-dark">Nächste Frage</button>
+                    <span><b>1</b> of <b id="all-questions">5</b> Questions</span>
+                    <button class="btn btn-dark">Next Question</button>
                 </div>
 
             </div>

@@ -1,6 +1,10 @@
+body{
+    background-color: rgb(46, 46, 114);
+}
+
 .container{
     min-height: 100dvh;
-    /* background-color: rgb(46, 46, 114); */
+    background-color: rgb(46, 46, 114);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -11,8 +15,17 @@
 }
 
 .question-footer{
-    border-top: 1px solid black;
+    border-top: 1px solid rgb(41, 40, 40);
     padding-top: 12px;
     display: flex;
     justify-content: space-between;
+}
+
+.quiz-answer:hover{
+    cursor: pointer;
+    background-color: rgba(0,0,0,0.05);
+}
+
+.bg-success, .bg-danger{
+    color: white;
 }
