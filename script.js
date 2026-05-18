@@ -1,4 +1,6 @@
 let currentQuestion = 0;
+let rightQuestions = 0;
+
 let questions = [
     {
         "question": "What is the name of Kaladin's Honorspren?",
@@ -36,7 +38,7 @@ let questions = [
         "right_answer": 4
     },
 
-     {
+    {
         "question": "What is the true name of the Herald known as the Madman, who arrives at the gates of Kholinar at the end of 'The Way of Kings'?",
         "answer_1": "Taln",
         "answer_2": "Nale",
@@ -53,45 +55,57 @@ function init() {
 
 function showQuestion() {
     let question = questions[currentQuestion];
-    document.getElementById("questiontext").innerHTML = question["question"];
-    document.getElementById("answer_1").innerHTML = question["answer_1"];
-    document.getElementById("answer_2").innerHTML = question["answer_2"];
-    document.getElementById("answer_3").innerHTML = question["answer_3"];
-    document.getElementById("answer_4").innerHTML = question["answer_4"];
 
+    if (currentQuestion >= questions.length) {
+        document.getElementById('endScreen').style = '';
+        document.getElementById('questionBody').style = 'display:none';
+
+        document.getElementById("all-questions-endscreen").innerHTML = questions.length;
+        document.getElementById("right-questions-endscreen").innerHTML = rightQuestions;
+
+    }
+    else {
+        document.getElementById('question-number').innerHTML = currentQuestion + 1;
+        document.getElementById("questiontext").innerHTML = question["question"];
+        document.getElementById("answer_1").innerHTML = question["answer_1"];
+        document.getElementById("answer_2").innerHTML = question["answer_2"];
+        document.getElementById("answer_3").innerHTML = question["answer_3"];
+        document.getElementById("answer_4").innerHTML = question["answer_4"];
+    }
 }
 
-function answer(selection){
+function answer(selection) {
     let question = questions[currentQuestion];
     let selectedQuestionNumber = selection.slice(-1); // greift auf den letzten char des strings zu
 
     let idOfRightAnswer = `answer_${question['right_answer']}`;
 
-    if(selectedQuestionNumber == question['right_answer']){
+    if (selectedQuestionNumber == question['right_answer']) {
         document.getElementById(selection).parentNode.classList.add('bg-success'); // parentNode greift auf übergeordneten Container zu
+        rightQuestions++;
     }
-    else{
-         document.getElementById(selection).parentNode.classList.add('bg-danger');
-         document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
+    else {
+        document.getElementById(selection).parentNode.classList.add('bg-danger');
+        document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
     }
     document.getElementById('next-button').disabled = false;
 }
 
-function nextQuestion(){
-    currentQuestion ++;
+function nextQuestion() {
+    currentQuestion++;
     document.getElementById('next-button').disabled = true;
     resetAnswerButtons();
     showQuestion();
-    
+
 }
 
-function resetAnswerButtons(){
+function resetAnswerButtons() {
     document.getElementById('answer_1').parentNode.classList.remove('bg-danger');
-    document.getElementById('answer_1').parentNode.classList.remove ('bg-success');
+    document.getElementById('answer_1').parentNode.classList.remove('bg-success');
     document.getElementById('answer_2').parentNode.classList.remove('bg-danger');
-    document.getElementById('answer_2').parentNode.classList.remove ('bg-success');
+    document.getElementById('answer_2').parentNode.classList.remove('bg-success');
     document.getElementById('answer_3').parentNode.classList.remove('bg-danger');
-    document.getElementById('answer_3').parentNode.classList.remove ('bg-success');
+    document.getElementById('answer_3').parentNode.classList.remove('bg-success');
     document.getElementById('answer_4').parentNode.classList.remove('bg-danger');
-    document.getElementById('answer_4').parentNode.classList.remove ('bg-success');
+    document.getElementById('answer_4').parentNode.classList.remove('bg-success');
 }

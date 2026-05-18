@@ -25,7 +25,20 @@
     <div class="container">
         <div class="card quiz-card">
             <img src="./assets/img/quiz.png" class="card-img-top" alt="...">
-            <div class="card-body">
+
+            <div id="endScreen" class="card-body" style="display: none;">
+                <div class="text-center">
+                    Quiz beendet
+                </div>
+                <div>
+                    <img class="width-100" src="./assets/img/victory.png" alt="">
+                </div>
+                <div class="text-center">
+                    Your score: <b id="right-questions-endscreen">X</b> of <b id="all-questions-endscreen">X</b>
+                </div>
+            </div>
+
+            <div id="questionBody" class="card-body">
                 <h5 class="card-title" id="questiontext">Frage</h5>
 
                 <div class="card quiz-answer mb-2" onclick="answer('answer_1')">
@@ -33,25 +46,26 @@
                         Antwort
                     </div>
                 </div>
-                <div class="card quiz-answer mb-2"onclick="answer('answer_2')">
+                <div class="card quiz-answer mb-2" onclick="answer('answer_2')">
                     <div class="card-body" id="answer_2">
                         Antwort
                     </div>
                 </div>
-                <div class="card quiz-answer mb-2"onclick="answer('answer_3')">
+                <div class="card quiz-answer mb-2" onclick="answer('answer_3')">
                     <div class="card-body" id="answer_3">
                         Antwort
                     </div>
                 </div>
-                <div class="card quiz-answer mb-2"onclick="answer('answer_4')">
+                <div class="card quiz-answer mb-2" onclick="answer('answer_4')">
                     <div class="card-body" id="answer_4">
                         Antwort
                     </div>
                 </div>
 
                 <div class="question-footer">
-                    <span><b>1</b> of <b id="all-questions">5</b> Questions</span>
-                    <button onclick="nextQuestion()" id="next-button" class="btn btn-dark" disabled>Next Question</button>
+                    <span><b id="question-number">1</b> of <b id="all-questions">5</b> Questions</span>
+                    <button onclick="nextQuestion()" id="next-button" class="btn btn-dark" disabled>Next
+                        Question</button>
                 </div>
 
             </div>
