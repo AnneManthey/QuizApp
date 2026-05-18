@@ -1,21 +1,48 @@
 let currentQuestion = 0;
 let questions = [
     {
-        "question": "Wer hat HTML erfunden?",
-        "answer_1": "Robbie Williams",
-        "answer_2": "Lady Gaga",
-        "answer_3": "Tim Berners-Lee",
-        "answer_4": "Justin Bieber",
+        "question": "What is the name of Kaladin's Honorspren?",
+        "answer_1": "Sylphrena",
+        "answer_2": "Pattern",
+        "answer_3": "Ivory",
+        "answer_4": "Snuggles",
+        "right_answer": 1
+    },
+
+    {
+        "question": "Which Knight Radiant Order does Shallan Davar belong to?",
+        "answer_1": "Windrunners",
+        "answer_2": "Lightweavers",
+        "answer_3": "Truthwatchers",
+        "answer_4": "Elsecallers",
+        "right_answer": 2
+    },
+
+    {
+        "question": "What is the name of Dalinar Kholin's Shardblade?",
+        "answer_1": "Firestorm",
+        "answer_2": "Sunraiser",
+        "answer_3": "Oathbringer",
+        "answer_4": "Mayalaran",
         "right_answer": 3
     },
 
     {
-        "question": "Was bedeutet das HTML Tag &lt;a&gt;?",
-        "answer_1": "Text Fett",
-        "answer_2": "Container",
-        "answer_3": "Ein Link",
-        "answer_4": "Kursiv",
-        "right_answer": 3
+        "question": "Which of the following is NOT one of the Three Realms of the Cosmere?",
+        "answer_1": "Physical Realm",
+        "answer_2": "Cognitive Realm",
+        "answer_3": "Spiritual Realm",
+        "answer_4": "Astral Realm",
+        "right_answer": 4
+    },
+
+     {
+        "question": "What is the true name of the Herald known as the Madman, who arrives at the gates of Kholinar at the end of 'The Way of Kings'?",
+        "answer_1": "Taln",
+        "answer_2": "Nale",
+        "answer_3": "Ishar",
+        "answer_4": "Jezrien",
+        "right_answer": 1
     },
 ]
 
