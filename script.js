@@ -53,16 +53,16 @@ function init() {
 
 function showQuestion() {
     let question = questions[currentQuestion];
-    if (gameIsOver()) {            // zeigt Endscreen an, wenn Fragen zuende sind
+    if (gameIsOver()) {                    // displays endscreen when questions are finished
         showEndscreen();
     }
-    else {                                                 // Zeigt nächste Frage & Antworten an & aktualisiert Progressbar
+    else {                                // displays question & answers and updates progress bar
         updateProgressBar();                                                                                                
         updateToNextQuestion(); 
     }
 }
 
-function gameIsOver(){          // gibt true oder false raus, bei true ist die Bedingung in showQuestion erfüllt und wird ausgeführt
+function gameIsOver(){                    // Returns true or false; if true, condition in `showQuestion` is met and executed.
     return currentQuestion >= questions.length;
 }
 
@@ -76,9 +76,9 @@ function showEndscreen() {
 
 function updateProgressBar() {
     let percent = (currentQuestion + 1) / questions.length;
-    percent = Math.round(percent * 100);                                        // Ergebnis in % und gerundet
-    document.getElementById("progress-bar").innerHTML = `${percent} %`;         // Zahl im Fortschrittbalken
-    document.getElementById("progress-bar").style = `width: ${percent}%`;       // Width im Style des Balken verändern
+    percent = Math.round(percent * 100);                                        // Result in % (rounded)
+    document.getElementById("progress-bar").innerHTML = `${percent} %`;         // Number in the progress bar
+    document.getElementById("progress-bar").style = `width: ${percent}%`;       // Changes width of progress bar to show progress
 }
 
 function updateToNextQuestion() {
@@ -94,10 +94,10 @@ function updateToNextQuestion() {
 
 function answer(selection) {
     let question = questions[currentQuestion];
-    let selectedQuestionNumber = selection.slice(-1); // greift auf den letzten char des strings zu
+    let selectedQuestionNumber = selection.slice(-1);                               // Accesses the last character of the string
     let idOfRightAnswer = `answer_${question['right_answer']}`;
     if (selectedQuestionNumber == question['right_answer']) {
-        document.getElementById(selection).parentNode.classList.add('bg-success'); // parentNode greift auf übergeordneten Container zu
+        document.getElementById(selection).parentNode.classList.add('bg-success');  // parentNode accesses parent container
         audioSuccess.play();
         rightQuestions++;
     }
@@ -135,7 +135,7 @@ function restartGame() {
     currentQuestion = 0;
     rightQuestions = 0;
     document.getElementById("header-image").src = `./assets/img/quiz.png`;
-    document.getElementById('questionBody').style = '';             //Questionbody wieder anzeigen
-    document.getElementById('endScreen').style = 'display:none';    // Endscreen wieder ausblenden
+    document.getElementById('questionBody').style = '';             // Shows questionbody
+    document.getElementById('endScreen').style = 'display:none';    // Hides endscreen
     init();
 }
