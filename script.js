@@ -66,7 +66,7 @@ function showQuestion() {
     }
     else {                                                          // Zeigt Frage & Antworten an                                          
 
-        let percent = (currentQuestion +1) / questions.length;  
+        let percent = (currentQuestion + 1) / questions.length;
 
         percent = Math.round(percent * 100);                                        // Ergebnis in % und gerundet
         document.getElementById("progress-bar").innerHTML = `${percent} %`;         // Zahl im Fortschrittbalken
@@ -114,4 +114,13 @@ function resetAnswerButtons() {
     document.getElementById('answer_3').parentNode.classList.remove('bg-success');
     document.getElementById('answer_4').parentNode.classList.remove('bg-danger');
     document.getElementById('answer_4').parentNode.classList.remove('bg-success');
+}
+
+function restartGame() {
+    currentQuestion = 0;
+    rightQuestions = 0;
+    document.getElementById("header-image").src = `./assets/img/quiz.png`;
+    document.getElementById('questionBody').style = '';             //Questionbody wieder anzeigen
+    document.getElementById('endScreen').style = 'display:none';    // Endscreen wieder ausblenden
+    init();
 }
