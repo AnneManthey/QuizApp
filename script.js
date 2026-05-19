@@ -1,7 +1,7 @@
 let currentQuestion = 0;
 let rightQuestions = 0;
-let audioSuccess = new Audio('assets/audio/success.wav');
-let audioFail = new Audio('assets/audio/fail.wav');
+const audioSuccess = new Audio('assets/audio/success.wav');
+const audioFail = new Audio('assets/audio/fail.wav');
 
 let questions = [
     {
@@ -12,7 +12,6 @@ let questions = [
         "answer_4": "Snuggles",
         "right_answer": 1
     },
-
     {
         "question": "Which Knight Radiant Order does Shallan Davar belong to?",
         "answer_1": "Windrunners",
@@ -21,7 +20,6 @@ let questions = [
         "answer_4": "Elsecallers",
         "right_answer": 2
     },
-
     {
         "question": "What is the name of Dalinar Kholin's Shardblade?",
         "answer_1": "Firestorm",
@@ -30,7 +28,6 @@ let questions = [
         "answer_4": "Mayalaran",
         "right_answer": 3
     },
-
     {
         "question": "Which of the following is NOT one of the Three Realms of the Cosmere?",
         "answer_1": "Physical Realm",
@@ -39,7 +36,6 @@ let questions = [
         "answer_4": "Astral Realm",
         "right_answer": 4
     },
-
     {
         "question": "What is the true name of the Herald known as the Madman, who arrives at the gates of Kholinar at the end of 'The Way of Kings'?",
         "answer_1": "Taln",
@@ -57,59 +53,71 @@ function init() {
 
 function showQuestion() {
     let question = questions[currentQuestion];
-
-    if (currentQuestion >= questions.length) {            // zeigt Endscreen an, wenn Fragen zuende sind
-        document.getElementById('endScreen').style = '';
-        document.getElementById('questionBody').style = 'display:none';
-        document.getElementById("all-questions-endscreen").innerHTML = questions.length;
-        document.getElementById("right-questions-endscreen").innerHTML = rightQuestions;
-        document.getElementById("header-image").src = `./assets/img/victory.png`;
-
+    if (gameIsOver()) {            // zeigt Endscreen an, wenn Fragen zuende sind
+        showEndscreen();
     }
-    else {                                                          // Zeigt Frage & Antworten an                                          
-
-        let percent = (currentQuestion + 1) / questions.length;
-
-        percent = Math.round(percent * 100);                                        // Ergebnis in % und gerundet
-        document.getElementById("progress-bar").innerHTML = `${percent} %`;         // Zahl im Fortschrittbalken
-        document.getElementById("progress-bar").style = `width: ${percent}%`;       // Width im Style des Balken verändern
-
-        document.getElementById('question-number').innerHTML = currentQuestion + 1;
-        document.getElementById("questiontext").innerHTML = question["question"];
-        document.getElementById("answer_1").innerHTML = question["answer_1"];
-        document.getElementById("answer_2").innerHTML = question["answer_2"];
-        document.getElementById("answer_3").innerHTML = question["answer_3"];
-        document.getElementById("answer_4").innerHTML = question["answer_4"];
+    else {                                                 // Zeigt nächste Frage & Antworten an & aktualisiert Progressbar
+        updateProgressBar();                                                                                                
+        updateToNextQuestion(); 
     }
+}
+
+function gameIsOver(){          // gibt true oder false raus, bei true ist die Bedingung in showQuestion erfüllt und wird ausgeführt
+    return currentQuestion >= questions.length;
+}
+
+function showEndscreen() {
+    document.getElementById('endScreen').style = '';
+    document.getElementById('questionBody').style = 'display:none';
+    document.getElementById("all-questions-endscreen").innerHTML = questions.length;
+    document.getElementById("right-questions-endscreen").innerHTML = rightQuestions;
+    document.getElementById("header-image").src = `./assets/img/victory.png`;
+}
+
+function updateProgressBar() {
+    let percent = (currentQuestion + 1) / questions.length;
+    percent = Math.round(percent * 100);                                        // Ergebnis in % und gerundet
+    document.getElementById("progress-bar").innerHTML = `${percent} %`;         // Zahl im Fortschrittbalken
+    document.getElementById("progress-bar").style = `width: ${percent}%`;       // Width im Style des Balken verändern
+}
+
+function updateToNextQuestion() {
+    let question = questions[currentQuestion];
+    document.getElementById('question-number').innerHTML = currentQuestion + 1;
+    document.getElementById("questiontext").innerHTML = question["question"];
+    document.getElementById("answer_1").innerHTML = question["answer_1"];
+    document.getElementById("answer_2").innerHTML = question["answer_2"];
+    document.getElementById("answer_3").innerHTML = question["answer_3"];
+    document.getElementById("answer_4").innerHTML = question["answer_4"];
+
 }
 
 function answer(selection) {
     let question = questions[currentQuestion];
     let selectedQuestionNumber = selection.slice(-1); // greift auf den letzten char des strings zu
     let idOfRightAnswer = `answer_${question['right_answer']}`;
-
     if (selectedQuestionNumber == question['right_answer']) {
         document.getElementById(selection).parentNode.classList.add('bg-success'); // parentNode greift auf übergeordneten Container zu
         audioSuccess.play();
-
         rightQuestions++;
     }
     else {
         document.getElementById(selection).parentNode.classList.add('bg-danger');
         document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
-
         audioFail.play();
-
     }
     document.getElementById('next-button').disabled = false;
 }
+
+// function rightAnswerSelected(selectedQuestionNumber){
+//     return selectedQuestionNumber == question['right_answer'];
+// }
 
 function nextQuestion() {
     currentQuestion++;
     document.getElementById('next-button').disabled = true;
     resetAnswerButtons();
     showQuestion();
-
 }
 
 function resetAnswerButtons() {
