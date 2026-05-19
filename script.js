@@ -56,17 +56,22 @@ function init() {
 function showQuestion() {
     let question = questions[currentQuestion];
 
-    if (currentQuestion >= questions.length) {
+    if (currentQuestion >= questions.length) {            // zeigt Endscreen an, wenn Fragen zuende sind
         document.getElementById('endScreen').style = '';
         document.getElementById('questionBody').style = 'display:none';
-
         document.getElementById("all-questions-endscreen").innerHTML = questions.length;
         document.getElementById("right-questions-endscreen").innerHTML = rightQuestions;
-
         document.getElementById("header-image").src = `./assets/img/victory.png`;
 
     }
-    else {
+    else {                                                          // Zeigt Frage & Antworten an                                          
+
+        let percent = (currentQuestion +1) / questions.length;  
+
+        percent = Math.round(percent * 100);                                        // Ergebnis in % und gerundet
+        document.getElementById("progress-bar").innerHTML = `${percent} %`;         // Zahl im Fortschrittbalken
+        document.getElementById("progress-bar").style = `width: ${percent}%`;       // Width im Style des Balken verändern
+
         document.getElementById('question-number').innerHTML = currentQuestion + 1;
         document.getElementById("questiontext").innerHTML = question["question"];
         document.getElementById("answer_1").innerHTML = question["answer_1"];
